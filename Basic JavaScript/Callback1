@@ -1,0 +1,8 @@
+function greet(name, formater){
+    return "Hello, " +formater(name);
+}
+function uppercaseName(name){
+    return name.toUpperCase();
+}
+
+console.log(greet("Time", uppercaseName))
