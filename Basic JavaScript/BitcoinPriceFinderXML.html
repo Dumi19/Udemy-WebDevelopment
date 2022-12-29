@@ -1,0 +1,24 @@
+<h1>Bitcoin current price</h1><span id="priceDisp"></span>
+<button>Refresh price</button>
+<script>
+    var btn = document.querySelector("button")
+    var price = document.querySelector("#price")
+    var currency = "GBP"
+
+    btn.addEventListener("click", function () {
+        var XHR = new XMLHttpRequest();
+        var url = "https://api.coindesk.com/v1/bpi/currentprice.json";
+        XHR.onreadystatechange = function () {
+            if (XHR.readyState == 4 && XHR.status == 200) {
+                console.log(XHR.responseText);
+                var data = JSON.parse(XHR.responseText)
+                var price = data.bpi[currency].rate;
+                console.log(data.bpi[currency].rate);
+                priceDisp.innerText = price + " " + currency;
+            }
+        }
+
+        XHR.open("GET", url);
+        XHR.send();
+    });
+</script>
